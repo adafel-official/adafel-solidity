@@ -1,0 +1,35 @@
+{
+  "name": "@adafel/adafel-solidity",
+  "version": "0.1.0",
+  "description": "Adafel EVM Solidity Library",
+  "main": "",
+  "scripts": {
+      "format": "prettier --write contracts"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/adafel-official/adafel-solidity.git"
+  },
+  "keywords": [
+      "Adafel",
+      "EVM",
+      "Solidity"
+  ],
+  "author": "[Adafel Core Devs]",
+  "license": "MIT OR Apache-2.0",
+  "bugs": {
+      "url": "https://github.com/adafel-official/adafel-solidity/issues"
+  },
+  "homepage": "https://github.com/adafel-official/adafel-solidity#readme",
+  "files": [
+      "contracts/"
+  ],
+  "publishConfig": {
+      "access": "public"
+  },
+  "dependencies": {
+      "@noble/secp256k1": "^2.1.0",
+      "solidity-cborutils": "^2.0.0",
+      "filecoin-solidity-api": "1.1.3"
+  }
+}

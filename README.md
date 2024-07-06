@@ -1,66 +1,42 @@
-## Foundry
+# Adafel Solidity
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+The Adafel Solidity Library is a collection of functions for performing various machine learning tasks on the Adafel network. It leverages the built-in syscalls of the Adafel blockchain to enable training and prediction using different machine learning models directly on the smart contracts.
 
-Foundry consists of:
+## Features
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+- **Linear Regression**: Train and predict using linear regression models.
+- **Logistic Regression**: Train and predict using logistic regression models.
+- **K-Nearest Neighbors (KNN)**: Train and predict using KNN regression and classification models.
+- **Decision Tree**: Train and predict using decision tree regression and classification models.
+- **Random Forest**: Train and predict using random forest regression and classification models.
 
-## Documentation
+## Installation
 
-https://book.getfoundry.sh/
+To use the Adafel Solidity Library, you need to install the necessary dependencies:
+
+```bash
+npm install @adafel/adafel-solidity
+```
 
 ## Usage
 
-### Build
+### Training a model
 
-```shell
-$ forge build
+To train a model, call the appropriate training function with your data and labels. For example, to train a linear regression model:
+
+```bash
+int64[][] memory data = ...; // Your training data
+int64[] memory labels = ...; // Your training labels
+
+bytes memory model = MachineLearningLib.trainLinearRegression(data, labels);
 ```
 
-### Test
+### Making Predictions
 
-```shell
-$ forge test
-```
+To make predictions using a trained model, call the appropriate prediction function with your data and the trained model. For example, to make predictions using a trained linear regression model:
 
-### Format
+```bash
+int64[][] memory data = ...; // Your input data
 
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+int64[] memory predictions = MachineLearningLib.predictLinearRegression(data, model);
 ```
