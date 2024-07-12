@@ -42,24 +42,22 @@ interface IDataStorage {
     ) external;
 
     function addAnalytics(
-        address payable userAddress,
         bytes32 schemaName,
         bytes32[] calldata columns,
         int64[] calldata data
     ) external payable;
 
     function addBatchAnalytics(
-        address[] memory userAddresses,
         bytes32 schemaName,
         bytes32[] calldata columns,
         int64[][] calldata data
     ) external payable;
 
     function updateAnalytics(
-        address payable userAddress,
         bytes32 schemaName,
         bytes32[] calldata columns,
-        int64[] calldata data
+        int64[] calldata data,
+        uint256 updateIndex
     ) external payable;
 
     function updateUserReward(uint256 newReward) external;

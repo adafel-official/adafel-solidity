@@ -30,13 +30,11 @@ library DataStorageLib {
 
     function addAnalytics(
         DataStorageInterface storage self,
-        address payable userAddress,
         bytes32 schemaName,
         bytes32[] calldata columns,
         int64[] calldata data
     ) internal {
         IDataStorage(self.dataStorageAddress).addAnalytics(
-            userAddress,
             schemaName,
             columns,
             data
@@ -45,13 +43,11 @@ library DataStorageLib {
 
     function addBatchAnalytics(
         DataStorageInterface storage self,
-        address[] memory userAddresses,
         bytes32 schemaName,
         bytes32[] calldata columns,
         int64[][] calldata data
     ) internal {
         IDataStorage(self.dataStorageAddress).addBatchAnalytics(
-            userAddresses,
             schemaName,
             columns,
             data
@@ -60,16 +56,16 @@ library DataStorageLib {
 
     function updateAnalytics(
         DataStorageInterface storage self,
-        address payable userAddress,
+        uint256 updateIndex,
         bytes32 schemaName,
         bytes32[] calldata columns,
         int64[] calldata data
     ) internal {
         IDataStorage(self.dataStorageAddress).updateAnalytics(
-            userAddress,
             schemaName,
             columns,
-            data
+            data,
+            updateIndex
         );
     }
 
