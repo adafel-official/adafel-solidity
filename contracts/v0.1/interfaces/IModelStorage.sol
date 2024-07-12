@@ -10,9 +10,5 @@ interface IModelStorage {
 
   function addModel(bytes memory _model, string memory _name) external;
 
-  function stakeAdafel(address staker) external payable;
-
-  function withDrawStakes() external;
-
   function getModel(string memory _modelname) external view returns (bytes memory);
 }
