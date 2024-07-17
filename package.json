@@ -1,6 +1,6 @@
 {
   "name": "@adafel/adafel-solidity",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Adafel EVM Solidity Library",
   "main": "",
   "scripts": {

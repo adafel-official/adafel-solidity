@@ -277,7 +277,7 @@ library MachineLearningLib {
   }
 
   // Function to extract data from Cid
-  function cidDataExtractionSyscall(bytes memory cid) public returns (int64[][] memory) {
+  function cidDataExtractionSyscall(bytes memory cid) internal returns (int64[][] memory) {
     // Convert bytes cid into Cid format and serialize
     CommonTypes.Cid memory dataCid = CommonTypes.Cid(cid);
     bytes memory params = _serializeCidInput(dataCid);
