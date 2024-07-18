@@ -14,13 +14,13 @@ library MachineLearningLib {
 
   // Function to train a linear regression model
   // Solver: QR Decomposition
-  function trainLinearRegression(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainLinearRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 2118579085, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2118579085, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -29,13 +29,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained linear regression model
-  function predictLinearRegression(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictLinearRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3906916149, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3906916149, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -47,13 +47,13 @@ library MachineLearningLib {
 
   // Function to train a logistic regression model
   // Solver: Limited-memory Broyden–Fletcher–Goldfarb–Shanno (LBFGS) method
-  function trainLogisticRegression(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainLogisticRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 1646696726, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 1646696726, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -62,13 +62,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained logistic regression model
-  function predictLogisticRegression(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictLogisticRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3762305934, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3762305934, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -81,13 +81,13 @@ library MachineLearningLib {
   // Function to train a K-Nearest Neighbors (KNN) regression model
   // Search algorithm: CoverTree
   // K: 3
-  function trainKNNRegression(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainKNNRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 2091347328, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2091347328, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -96,13 +96,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained KNN regression model
-  function predictKNNRegression(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictKNNRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3114267161, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3114267161, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -115,13 +115,13 @@ library MachineLearningLib {
   // Function to train a KNN classification model
   // Search algorithm: CoverTree
   // K: 3
-  function trainKNNClassification(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainKNNClassification(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 958700693, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 958700693, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -130,13 +130,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained KNN classification model
-  function predictKNNClassification(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictKNNClassification(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3748131007, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3748131007, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -147,13 +147,13 @@ library MachineLearningLib {
   }
 
   // Function to train a Decision Tree regression model
-  function trainDecisionTreeRegression(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainDecisionTreeRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 851076209, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 851076209, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -162,13 +162,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained Decision Tree regression model
-  function predictDecisionTreeRegression(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictDecisionTreeRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3357014816, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3357014816, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -179,13 +179,13 @@ library MachineLearningLib {
   }
 
   // Function to train a Decision Tree classification model
-  function trainDecisionTreeClassification(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainDecisionTreeClassification(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 4210161880, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 4210161880, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -194,13 +194,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained Decision Tree classification model
-  function predictDecisionTreeClassification(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictDecisionTreeClassification(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3397745450, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3397745450, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -212,13 +212,13 @@ library MachineLearningLib {
 
   // Function to train a Random Forest regression model
   // Number of trees: 100
-  function trainRandomForestRegression(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainRandomForestRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 3424383724, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3424383724, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -227,13 +227,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained Random Forest regression model
-  function predictRandomForestRegression(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictRandomForestRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 1937439469, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 1937439469, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -245,13 +245,13 @@ library MachineLearningLib {
 
   // Function to train a Random Forest classification model
   // Number of trees: 100
-  function trainRandomForestClassification(int64[][] memory data, int64[] memory labels) internal returns (bytes memory) {
+  function trainRandomForestClassification(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
 
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 611876452, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 611876452, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -260,13 +260,13 @@ library MachineLearningLib {
   }
 
   // Function to make predictions using a trained Random Forest classification model
-  function predictRandomForestClassification(int64[][] memory data, bytes memory model) internal returns (int64[] memory) {
+  function predictRandomForestClassification(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
     bytes memory params = _serializePredictionInput(data, model);
 
     // Call the actor's predict function
     (int256 ret_code, bytes memory return_value) =
-        Actor.callByID(CommonTypes.FilActorId.wrap(49), 2141575786, Misc.CBOR_CODEC, params, 0, false);
+        Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2141575786, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
