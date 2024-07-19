@@ -13,7 +13,7 @@ library MachineLearningLib {
   using FilecoinCBOR for *;
 
   // Function to train a linear regression model
-  // Solver: QR Decomposition
+  // Solver: SVD Decomposition
   function trainLinearRegression(int64[][] memory data, int64[] memory labels) internal view returns (bytes memory) {
     // Serialize training data and labels
     bytes memory params = _serializeTrainingInput(data, labels);
@@ -21,6 +21,19 @@ library MachineLearningLib {
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
         Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2118579085, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
+  // Train Linear Regression by passing the Data Cid
+  function trainLinearRegressionFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2118579085, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -54,6 +67,19 @@ library MachineLearningLib {
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
         Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 1646696726, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
+  // Train Logistic Regression by passing the Data Cid
+  function trainLogisticRegressionFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 1646696726, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -95,6 +121,19 @@ library MachineLearningLib {
     return return_value;
   }
 
+  // Train KNN Regression by passing the Data Cid
+  function trainKNNRegressionFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 2091347328, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }  
+
   // Function to make predictions using a trained KNN regression model
   function predictKNNRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
@@ -129,6 +168,19 @@ library MachineLearningLib {
     return return_value;
   }
 
+  // Train KNN Classification by passing the Data Cid
+  function trainKNNClassificationFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 958700693, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }  
+
   // Function to make predictions using a trained KNN classification model
   function predictKNNClassification(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
@@ -161,6 +213,19 @@ library MachineLearningLib {
     return return_value;
   }
 
+  // Train Decision Tree Regression by passing the Data Cid
+  function trainDecisionTreeRegressionFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 851076209, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
   // Function to make predictions using a trained Decision Tree regression model
   function predictDecisionTreeRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
@@ -186,6 +251,19 @@ library MachineLearningLib {
     // Call the actor's train function
     (int256 ret_code, bytes memory return_value) =
         Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 4210161880, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
+  // Train Decision Tree Classification by passing the Data Cid
+  function trainDecisionTreeClassificationFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 4210161880, Misc.CBOR_CODEC, params);
 
     // Ensure the actor call was successful
     require(ret_code == 0, "Machine learning actor failed");
@@ -226,6 +304,19 @@ library MachineLearningLib {
     return return_value;
   }
 
+  // Train Random Forest Regression by passing the Data Cid
+  function trainRandomForestRegressionFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 3424383724, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
   // Function to make predictions using a trained Random Forest regression model
   function predictRandomForestRegression(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
@@ -259,6 +350,19 @@ library MachineLearningLib {
     return return_value;
   }
 
+  // Train Random Forest Classification by passing the Data Cid
+  function trainRandomForestClassificationFromCid(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    bytes memory params = cidDataExtractionSyscall(cid, train_indices, label_index);
+
+    (int256 ret_code, bytes memory return_value) =
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 611876452, Misc.CBOR_CODEC, params);
+
+    // Ensure the actor call was successful
+    require(ret_code == 0, "Machine learning actor failed");
+
+    return return_value;
+  }
+
   // Function to make predictions using a trained Random Forest classification model
   function predictRandomForestClassification(int64[][] memory data, bytes memory model) internal view returns (int64[] memory) {
     // Serialize prediction input data and model
@@ -276,21 +380,21 @@ library MachineLearningLib {
     return result;
   }
 
-  // Function to extract data from Cid
-  function cidDataExtractionSyscall(bytes memory cid) internal returns (int64[][] memory) {
-    // Convert bytes cid into Cid format and serialize
+  // Function to extract the data from Cid into training set and labels
+  // Parameters: CID, trainin column indices, label index
+  // Training column indices are the array of column indices to be included in training set
+  // Label index is the column index to be used as label
+  function cidDataExtractionSyscall(bytes memory cid, int64[] memory train_indices, uint32 label_index) internal view returns (bytes memory) {
+    // Serialize the input parameters
     CommonTypes.Cid memory dataCid = CommonTypes.Cid(cid);
-    bytes memory params = _serializeCidInput(dataCid);
+    bytes memory params = _serializeCidDataExtractionInput(dataCid, train_indices, label_index);
 
-    // Call the actor's cid extraction function
     (int256 ret_code, bytes memory return_value) =
-          Actor.callByID(CommonTypes.FilActorId.wrap(49), 822806271, Misc.CBOR_CODEC, params, 0, false);
+          Actor.callByIDReadOnly(CommonTypes.FilActorId.wrap(49), 822806271, Misc.CBOR_CODEC, params);
     
     require(ret_code == 0, "Machine learning actor failed");
 
-    // Deserialize and return the result
-    int64[][] memory result = _deserializeCidData(return_value);
-    return result;
+    return return_value;
   }
 
   // Helper function to serialize training input
@@ -344,14 +448,21 @@ library MachineLearningLib {
   }
 
   // Helper function to serialize cid input
-  function _serializeCidInput(CommonTypes.Cid memory dataCid) private pure returns (bytes memory) {
-      // have 256 as initial capacity
-      CBOR.CBORBuffer memory buf = CBOR.create(256);
-      buf.startFixedArray(1);
-      buf.writeCid(dataCid.data);
+  function _serializeCidDataExtractionInput(CommonTypes.Cid memory dataCid, int64[] memory train_indices, uint32 label_index) private pure returns (bytes memory) {
+    // have 256 as initial capacity
+    CBOR.CBORBuffer memory buf = CBOR.create(256);
+    buf.startFixedArray(3);
+    buf.writeCid(dataCid.data);
 
-      return buf.data();
+    buf.startFixedArray(uint64(train_indices.length));
+    for (uint256 i = 0; i < train_indices.length; i++) {
+      buf.writeInt64(train_indices[i]);
     }
+
+    buf.writeUInt64(label_index);
+
+    return buf.data();
+  }
 
   // Helper function to deserialize prediction result
   function _deserializePredictionResult(bytes memory actor_result) private pure returns (int64[] memory) {
